@@ -28,7 +28,9 @@ const Wrapper = styled.div`
   background-color: ${COLORS.gray[900]};
   display: flex;
   gap: 24px;
-  padding: 8px 32px;
+  padding: 0 32px;
+  height: 2.5rem;
+  align-items: center;
 `;
 
 const MarketingMessage = styled.span`
