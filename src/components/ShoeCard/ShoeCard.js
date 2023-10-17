@@ -47,6 +47,7 @@ const ShoeCard = ({
   }
 
   const FlagType = flagLabels[variant].type;
+  const OriginalPrice = variant === 'on-sale' ? OriginalPriceOnSale : Price;
 
   return (
     <Link href={`/shoe/${slug}`}>
@@ -58,10 +59,11 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <OriginalPrice>{formatPrice(price)}</OriginalPrice>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          { variant === 'on-sale' && <SalePrice>{formatPrice(salePrice)}</SalePrice> }
         </Row>
       </Wrapper>
     </Link>
@@ -105,11 +107,14 @@ const Image = styled.img`
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.gray[900]};
+  display: inline;
 `;
 
 const Price = styled.span``;
@@ -121,6 +126,11 @@ const ColorInfo = styled.p`
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
+`;
+
+const OriginalPriceOnSale = styled(Price)`
+  color: ${COLORS.gray[700]};
+  text-decoration: line-through;
 `;
 
 export default ShoeCard;
